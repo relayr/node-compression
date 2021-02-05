@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest test/",
     "start": "cat ../sample_event_stream.log | node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "got": "^11.8.1",
     "split": "^1.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }
