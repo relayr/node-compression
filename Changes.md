@@ -17,11 +17,13 @@ The data is clear after both compression Brotli offers a better compression rati
 
 ### DATA POINTS
 
-| BYTES | COMPRESSION | COMMENTS |
-| --- | --- | --- | --- |
-| 122005 | uncompressed |  | 
-| 86044 | gzip | ~29% less bytes than uncompressed | 
-| 77068 | brotli | ~36% less bytes than uncompressed and ~10% better than gzip | 
+### Data points observed
+
+BYTES   |  COMPRESSION  |  COMMENTS 
+ ----------- | -----------------------  | ---------------------- 
+122005   |  uncompressed     |  
+ 86044    |  gzip                      |  ~29% less bytes than uncompressed 
+77068     |  brotli                     |  ~36% less bytes than uncompressed and ~10% better than gzip 
 
 
 
