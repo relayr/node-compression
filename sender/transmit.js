@@ -11,15 +11,36 @@ const zlib = require('zlib');
    sending data with zgip compression using
 */
 
+// module.exports = function(eventMsg, encoding, callback,REQUEST=request) {
+//   zlib.gzip(eventMsg, function (err, evtMsg) {
+//     if (err) {
+//       console.log("An error occured during compression");
+//       callback(err);
+//     } else {
+//       REQUEST.post('http://localhost:8080/event', {
+//           body: evtMsg,
+//           headers: {'Content-Encoding': 'gzip' }
+//         },
+//         (err, res, body) => {
+//           callback(err)
+//         })
+//     };
+//   })
+// }
+
+/*
+   sending data with brotlicompress compression using
+*/
+
 module.exports = function(eventMsg, encoding, callback,REQUEST=request) {
-  zlib.gzip(eventMsg, function (err, evtMsg) {
+  zlib.brotliCompress(eventMsg, function (err, evtMsg) {
     if (err) {
       console.log("An error occured during compression");
       callback(err);
     } else {
       REQUEST.post('http://localhost:8080/event', {
           body: evtMsg,
-          headers: {'Content-Encoding': 'gzip' }
+          headers: {'Content-Encoding': 'br' }
         },
         (err, res, body) => {
           callback(err)
@@ -27,4 +48,3 @@ module.exports = function(eventMsg, encoding, callback,REQUEST=request) {
     };
   })
 }
-
