@@ -15,13 +15,10 @@ const parseAndDelay = new Transform({
   objectMode: true,
   transform(chunk, encoding, callback) {
     if(chunk === '') return callback()
-    try {
-      // set the a delay between 0 and 1000 ms
-      let delay = Math.round(Math.random() * 1000)
-      setTimeout((() => callback(null, JSON.parse(chunk))), delay)
-    } catch(e) {
-      callback(`Can't parse: ${chunk}. ${e}`)
-    }
+    // set the a delay between 0 and 1000 ms
+    // as no parsing is required so removed try catch
+    let delay = Math.round(Math.random() * 1000)
+    setTimeout(() => callback(null, chunk), delay)
   }
 })
 

@@ -1,22 +1,38 @@
 'use strict'
 
 /*
-*  Modify this file as needed.
-*/
+ *  Modify this file as needed.
+ */
 
-const http = require('http')
+const http = require('http');
+const zlib = require('zlib');
 
-process.on('SIGTERM', function() {
+//const fs = require('fs');
+//let totalBytesReceived = 0
+
+process.on('SIGTERM', function () {
   process.exit(0)
 })
 
-const server = http.createServer(function(req, res) {
-  let body = []
-  req.on('data', body.push.bind(body))
+const server = http.createServer(function (req, res) {
   req.on('end', () => {
-    // just print to stdout
-    console.log(Buffer.concat(body).toString())
+    //for checking total received bytes
+    //totalBytesReceived += req.socket.bytesRead;
+    //fs.writeFileSync('./bytesReceived.txt', totalBytesReceived + "\n", 'utf8');
+    // console.log(body)
     res.end()
+  }).on('data', (message) => {
+    /* 
+      received data using gzip compression 
+    */
+    // console.log(zlib.gunzipSync(message).toString());
+    /* 
+      received data using brotli compression 
+    */
+    console.log(zlib.brotliDecompressSync(message).toString());
+
+  }).on('error', (err) => {
+    console.log(`An error Occured ${err}`);
   })
 })
 
