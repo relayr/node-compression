@@ -1,2 +1,5 @@
 .vscode
 node_modules
+bytesReceived.txt
+*.sort
+received_event*.log
